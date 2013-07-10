@@ -1,0 +1,12 @@
+body {
+	background-color: black;
+	font-family: 'Courier New', Helvetica, Arial, sans-serif;
+	font-size: 18px;
+	color: white;
+}
+
+#main {
+	margin-top: 10%;
+	margin-left: 15%;
+	margin-right: 15%;
+}
