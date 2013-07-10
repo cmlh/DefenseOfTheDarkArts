@@ -10,3 +10,19 @@ body {
 	margin-left: 15%;
 	margin-right: 15%;
 }
+
+a:link {
+	color:#FFFFFF;
+}
+
+a:visited {
+	color:#0000FF;
+}
+
+a:hover {
+	color:#00FF00;
+}
+
+a:active {
+	color:#0000FF;
+}
