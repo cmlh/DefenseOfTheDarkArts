@@ -25,3 +25,14 @@ a:hover {
 a:active {
 	color:#0000FF;
 }
+
+table {
+  width: 100%;
+  border: 1px solid #FFFFFF;
+}
+
+tr th, td {
+	width: 33%;
+	text-align: left;
+	border: 1px solid #FFFFFF;
+}
