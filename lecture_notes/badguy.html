@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<link rel="stylesheet" href="../stylesheets/default.css" type="text/css" media="screen" />
+<link rel="shortcut icon" href="../images/favicon.ico" />
+<title>COMP 116: Introduction to Computer Security</title>
+</head>
+
+<body>
+<div id="main">
+<div id = "header">
+<h1>Introduction to Computer Security</h1>
+<h2>Thinking Like A Bad Guy</h2>
+<h3 class="stress">We Have Dug Ourselves into a Deep Hole: How We Got Here (or WTF is going on?)</h3>
+<ul>
+<li>Misunderstood by the media, by the general public, and even by management</li>
+<li>The problems are getting worse</li>
+<li>We are facing the same problems that we faced years ago</li>
+<li>Blame:
+<ul>
+<li>Developers (for deploying technology naively)</li>
+<li>Users</li>
+<li>Technology (lots of processes are hidden from users and even from developers)</li>
+<li>Politics
+<ul>
+<li>Dumb laws</li>
+<li>No parties can sit at the same table any more and discuss security constructively</li>
+<li>"Don't want the other guy to win"</li>
+<li>"Too often, individual rights can be trumped in the name of security"</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>The "trinity of trouble":
+<ul>
+<li>Connectivity</li>
+<li>Complexity</li>
+<li>Extensibility</li>
+</ul>
+</li>
+<li>Excuses (thanks Giovanni):
+<ul>
+<li>"We use encryption"</li>
+<li>"We use anti-virus"</li>
+<li>"We use a firewall"</li>
+<li>"We reviewed the code"</li>
+<li>"We have never been attacked"</li>
+</ul>
+</li>
+</ul>
+
+<h3>Definitions</h3>
+<ul>
+<li><span class="def">Event</span> - Could be anything</li>
+<li><span class="def">Incident</span> - A malicious event</li>
+<li><span class="def">Bug</span> - An error that exists in the implementation-level (i.e. only exist in source code); very correctable</li>
+<li><span class="def">Flaw</span> - An error at a much deeper level, particularly in the design, and likely in the code level; can be very difficult and costly to correct</li>
+<li><span class="def">Hacker</span> - A creative programmer; a positive connotation</li>
+<li><span class="def">Cracker</span> - The bad guy, the attacker, what media coins "hacker" (the negative connotation).  We'll use <span class="def">attacker</span> in this class.</li>
+<li><span class="def">Black hat</span> - An attacker with malicious intents</li>
+<li><span class="def">White hat</span> - An attacker with good intents (i.e., the white knight)</li>
+<li><span class="def">Gray hat</span> - An attacker with good and bad intents</li>
+<li><span class="def">Script kiddie</span> or <span class="def">skiddie</span> - Nuisance; not going away any time soon; 1337 wannabes; use scripts and exploits written by others (and do not understand how they really work); always a lamer</li>
+<li><span class="def">Vulnerability</span> - A security bug (thanks Giovanni); a weakness in a system that can potentially be exploited by an attacker</li>
+<li><span class="def">Exploiting</span> or <span class="def">exploitation</span> - The act of taking advantage of a vulnerability</li>
+<li><span class="def">Exploit</span> - Software program that performs the exploiting</li>
+<li><span class="def">Risk</span> - The <span class="stress">likelihood</span> that an attacker will take advantage of that vulnerability</li>
+<li><span class="def">Threat</span> - The <span class="stress">likelihood</span> that an incident will happen</li>
+<li><span class="def">pwn3ed</span> - Owned; successful exploitation; computer system completely compromised</li>
+<li><span class="def">All your bases are belong to us</span> - Enough said</li>
+</ul>
+
+<h3>Security Policies</h3>
+<ul>
+<li>Gives desired security properties or objectives</li>
+<li>Fulfills many purposes:
+<ul>
+<li>Protect people and information</li>
+<li>Set the rules for expected behavior by users, system administrators, management, and security personnel</li>
+<li>Authorize security personnel to monitor, probe, and investigate</li>
+<li>Define and authorize the consequences of violation</li>
+<li>Define the company consensus baseline stance on security</li>
+<li>Help minimize risk</li>
+<li>Help track compliance with regulations and legislation</li>
+</ul>
+</li>
+<li>Requires:
+<ul>
+<li><span class="def">Policies</span> - What to be done</li>
+<li><span class="def">Procedures</span> - How the policy will be carried out</li>
+<li><span class="def">Guidelines</span> - Best practices, suggestions. Not required but strongly recommended.</li>
+</ul>
+</li>
+<li>Reference: <a href="http://www.sans.org/security-resources/policies/" target="_blank">http://www.sans.org/security-resources/policies/</a></li>
+</ul>
+
+<h3>Security Mechanisms to Enforce Security Policies</h3>
+<ul>
+<li>Two types:
+<ul>
+<li>Prevention - proactive</li>
+<li>Detection - reactive (checks if a policy is broken); usually comes with a recovery mechanism</li>
+</ul>
+</li>
+<li>Authentication (e.g., password)</li>
+<li>Access control (can be as simple as a whitelist or blacklist)</li>
+<li>Cryptography</li>
+<li>Physical protection</li>
+<li>Intrusion detection</li>
+</ul>
+
+<h3>Tufts University's Information Technology Responsible Use Policy</h3>
+<ul>
+<li><a href="http://uit.tufts.edu/?pid=444&amp;c=104" target="_blank">http://uit.tufts.edu/?pid=444&amp;c=104</a></li>
+</ul>
+
+<h3>The Tufts Department of Computer Science Policy</h3>
+<ul>
+<li>From Alva: <span class="stress">Contrary to popular belief, having accounts on the EECS systems for course work is a privilege, not a right. If you are found engaged in destructive or unethical acts, such as invading the privacy of others, maintaining databases of or providing confidential information on others (such as passwords, credit card numbers, or social security numbers) electronically harassing others, using our systems for profit or other commercial gain, or attempting to gain unauthorized control over our systems, your account privileges will be revoked. Note that this also means that you will be unable to submit assignments for this course, and unable to receive feedback on the assignments you have already completed. Being signed up for this course is not sufficient reason to be reinstated. This is not worth the risk. We run an open community and an open system, at the cost of rather strict policies about violating that openness. We would rather remove the presence of malicious people than tighten the controls on ethical and proper use.</span></li>
+</ul>
+
+<h3>Violating Security Mechanisms</h3>
+<ul>
+<li>Again, two types:
+<ul>
+<li>Low-tech</li>
+<li>High-tech</li>
+</ul>
+</li>
+<li>The insider</li>
+<li>Disgruntled employees</li>
+<li>Lost or stolen laptop or mobile device</li>
+<li>Password on sticky notes</li>
+<li>Brute force</li>
+<li>Google</li>
+<li>Exploits</li>
+<li>Malware</li>
+<li>Card skimming / piggybacking</li>
+</ul>
+
+<h3>Reconnaissance</h3>
+<ul>
+<li>If I was a bad guy, what do I want?  <span class="stress">Information is gold</span>
+<ul>
+<li>Passwords, personnel records, source code, pictures =&gt; usually translate into money</li>
+</ul>
+</li>
+<li>Attack plan
+<ul>
+<li>Identify target(s)</li>
+<li>Research</li>
+<li>Pick method(s)</li>
+<li>Develop and build trust</li>
+<li>Document and use information</li>
+<li>Refine strategy</li>
+</ul>
+</li>
+<li>Defining success
+<ul>
+<li>Physical access to protected resources such as critical files</li>
+<li>Remote access credentials (e.g., computer networks, terminal / command prompt)</li>
+<li>Other security controls (e.g., make victim transfer funds)</li>
+</ul>
+</li>
+</ul>
+
+<h3>Social Engineering</h3>
+<ul>
+<li>The goal: manipulating people to give sensitive information or data (usually low tech)</li>
+<li>Can I help you?</li>
+<li>Can you help me?</li>
+<li>Just ask for it</li>
+<li>Tailgaiting</li>
+<li>Pretexting</li>
+<li>Phishing</li>
+<li>Dumpster diving</li>
+<li>Baiting (or road apple)</li>
+<li>Chain letters</li>
+</ul>
+
+<h3>How Your Data Was Lost (From <span class="title">How Your Data Was Lost</span> in <span class="stress">Wired Magazine; 2/2007</span>)</h3>
+<ul>
+<li>35%: Lost laptop or other devices</li>
+<li>21%: Third party or outsourcer breach (see the US Government)</li>
+<li>19%: Lost electronic backup</li>
+<li>9%: Misplaced paper records</li>
+<li>9%: Inside job or malicious code (including logic bombs and backdoors)</li>
+<li>7%: Attackers</li>
+<li>Summary: your data was lost most likely due to low-tech reasons.</li>
+</ul>
+</div>
+</div>
+
+<script type="text/javascript">
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+  try {
+    var pageTracker = _gat._getTracker("UA-582953-12");
+    pageTracker._trackPageview();
+  }
+  catch(err) {}
+</script>
+
+</body>
+</html>
