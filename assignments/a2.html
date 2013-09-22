@@ -27,7 +27,7 @@
 	</ol>
 
 	<h2>Overview</h2>
-	<p><code>PacketFu</code> is a mid-level packet manipulation library for Ruby written by Tod Beardsley.  That is, you can write programs for reading and writing packets to a network interface or to a libpcap-formatted file.  <code>PacketFu</code> is currently used in the <a href="http://www.rapid7.com/products/metasploit/download.jsp" target="_blank">Metasploit Project</a>.  Read <a href="manipulatingthenetworkwithpacketfu-110314111058-phpapp01.pdf"><span class="title">Manipulating The Network with PacketFu</a> (from Hakin9 Magazine, February 2010)</a> on how to perform ARP spoofing with <code>PacketFu</code>.</p>
+	<p><code>PacketFu</code> is a mid-level packet manipulation library for Ruby written by Tod Beardsley.  That is, you can write programs for reading and writing packets to a network interface or to a libpcap-formatted file.  <code>PacketFu</code> is currently used in the <a href="http://www.rapid7.com/products/metasploit/download.jsp" target="_blank">Metasploit Project</a>.  Read <a href="manipulatingthenetworkwithpacketfu-110314111058-phpapp01.pdf"><span class="title">Manipulating The Network with PacketFu</span> (from Hakin9 Magazine, February 2010)</a> on how to perform ARP spoofing with <code>PacketFu</code>.</p>
 	<p>We discussed a number of network scanning techniques during lecture, and you practiced finding sensitive information in PCAP files in the first assignment.  In this assignment, you will apply your knowledge to write a tool to analyze a live stream of network packets for security incidents including scanning, potential web attacks, and information leakage.</p>
 
 	<h2>Instructions</h2>
@@ -44,12 +44,10 @@
 	<p>If an incident is detected, alert must be displayed in the format:</p>
 	<p><code>#{incident_number}. ALERT: #{attack} is detected from #{source IP address} (#{protocol})!</code></p>
 	<p>Examples:</p>
-	<code>
 	<ol>
- 		<li>ALERT: Nmap scan is detected from 192.168.1.3 (UDP)!</li>
- 		<li>ALERT: Credit card leaked in the clear from 192.168.1.7 (HTTP)!</li>
+		<li><code>ALERT: Nmap scan is detected from 192.168.1.3 (UDP)!</code></li>
+ 		<li><code>ALERT: Credit card leaked in the clear from 192.168.1.7 (HTTP)!</code></li>
 	</ol>
-	</code>
 	<p>Alert message can be displayed multiple times for a source IP address (e.g., from an nmap scan).</p>
 	<p>Your program does not need to support reading PCAP files, saving the stream of packets to a PCAP file, or saving a record of detected incidents.</p>
 
