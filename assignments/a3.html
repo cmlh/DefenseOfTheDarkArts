@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<link rel="stylesheet" href="../stylesheets/default.css" type="text/css" media="screen" />
+<link rel="shortcut icon" href="../images/favicon.ico" />
+<title>COMP 116: Introduction to Computer Security - Assignment 3</title>
+</head>
+
+<body>
+<div id="main">
+
+<div id = "header">
+<h1>Introduction to Computer Security</h1>
+<h2>COMP 116, Tufts University Department of Computer Science, Fall 2013</h2>
+<h2>Assignment 3: Capture The Flags</h2>
+<h2>Starting In-Class on Thursday, October 24rd; Write-Up Due Halloween</h2>
+</div>
+
+<div id="content">
+	<h4 class="note">This assignment is worth 30 points.  You must work on this assignment in your assigned team!</h4>
+
+	<h2>Objectives</h2>
+	<ol>
+		<li>Find vulnerabilities in applications and then take advantage of them.</li>
+	</ol>
+
+	<h2>Overview</h2>
+	<p>In this traditional game, you will be finding and exploiting vulnerabilities in a <span class="stress">series of applications</span> to gain access to information you should not have access to.  The goal is to find the "flags" placed on the server.</p>
+
+	<p>This year, I will tell you how many flags I have planted.  I will also an provide obscure hint for each of them.  More importantly, you will play this game on a team that I will assign randomly.</p>
+	
+	<h2>A Flag</h2>
+	<p>In the style of many Security Capture The Flag games, the format of a flag will look like this: <code>key{flag}</code>.  Examples: <code>key{somelongstringthatrepresentshteflag} </code> or <code>key{334359b051f4dda20937055605b3706dfe91d6c8}")</code>.  Each flag will worth a certain value: 100 points, 200 points, and 300 points. Each team will be given a unique key to submit flags.</p>
+
+	<h2>Scoring</h2>
+	<p>On the day of the game, there will be a scoreboard that will be displayed via computer projector.  The scoreboard will display a hint for each flag, and the scores for each team in descending order.</p>
+
+	<h2>Instructions</h2>
+	<p>A good chunk of this game will be played in-class on Thursday, October 22nd on the second floor of Halligan Hall.  Additional information, including key to submit flag for each team, will be provided on the day of the game.</p>
+
+	<h2>Assessment</h2>
+	<p>There will be two components for grading:</p>
+	<ol>
+		<li>Team's score for the game.</li>
+		<li>Team's CTF writeup</li>
+	</ol>
+	<p>There is no individual component for this assignment.</p>
+
+	<h2>Ground Rules</h2>
+	<ol>
+		<li>Should a team member perform a denial of service (DoS) on the game server, team will be disqualified, will receive 0 points for the team score.</li>
+		<li>Should a team member tamper with the scoreboard or flag submission system, 100 points will be deducted from the team's score for each attempt.</li>
+	</ol>
+
+	<h2>Preparing to Play</h2>
+	<ul>
+		<li>Get to know your teammates.</li>
+		<li>It is important that you tinker with the applications.</li>
+		<li>Use your creativity.  That is, if you were a bad guy, what would do?</li>
+		<li>Be sure to view the source of all the web pages and relevant files.</li>
+		<li>This game will be played on a separate segment of the EECS wireless network.  It is highly recommended to designate one team member to look up information on the world wide web.</li>
+		<li>For some challenges (flags), some programming or scripting may be necessary.</li>
+		<li>Resources that would be ideal to have for the game: wordlist from John the Ripper, SQL reference, JavaScript reference, Kali or BackTrack Live CD, a proxy.</li>
+	</ul>
+
+	<h2>The CTF Write-Up</h2>
+	<p>Each team will produce a write-up that must be handed in class on Thursday, October 31st.</p>
+
+	<p>So what constitutes a good CTF write-up? For each flag that your team finds, the following information should be provided:</p>
+
+	<ul>
+		<li>A screenshot of the flag</li>
+		<li>The exact location of the flag (path or file name)</li>
+		<li>The exploit or methodology used to find the flag</li>
+	</ul>
+	<p>A good example of a CTF write-up is <a href="http://blog.ioactive.com/2012/08/stripe-ctf-20-write-up.html" target="_blank">http://blog.ioactive.com/2012/08/stripe-ctf-20-write-up.html</a>.  A list of good CTF write-ups can be found at <a href="http://www.betterhacker.com/2012/02/collection-of-ctf-writeups.html" target="_blank">http://www.betterhacker.com/2012/02/collection-of-ctf-writeups.html</a></p>
+
+	<h2>Teams</h2>
+	<p>Team 1</p>
+	<ul>
+	<li>Tai, Alison</li>
+	<li>Li, Andrew</li>
+	<li>Conron, Brendan</li>
+	<li>Downer, James</li>
+	</ul>
+
+	<p>Team 2</p>
+	<ul>
+	<li>Clarkson, Will</li>
+	<li>Dutko, Jon</li>
+	<li>Chen, Dennis</li>
+	<li>Pierce, Ayal</li>
+	</ul>
+
+	<p>Team 3</p>
+	<ul>
+	<li>Blanck, Connor</li>
+	<li>Redelmeier, Isobel</li>
+	<li>Zakaria, Adam</li>
+	<li>Ansart, Victor</li>
+	</ul>
+
+	<p>Team 4</p>
+	<ul>
+	<li>Goldstein, Max</li>
+	<li>Sparber, Saul</li>
+	<li>Hedberg, Ashley</li>
+	<li>Pemberton, Paul</li>
+	<li>McShane, Robert</li>
+	</ul>
+
+	<p>Team 5</p>
+	<ul>
+	<li>Dimitrov, Stefan</li>
+	<li>Andre, Nicholas</li>
+	<li>Stone, William</li>
+	<li>Dinesh, Aswathy</li>
+	</ul>
+
+	<p>Team 6</p>
+	<ul>
+	<li>Purcell, Samuel</li>
+	<li>Kalbfleisch, David</li>
+	<li>Polyakov, Alex</li>
+	<li>Richard, Denis</li>
+	</ul>
+
+	<p>Team 7</p>
+	<ul>
+	<li>Schlaikjer, Ross</li>
+	<li>Cronburg, Karl</li>
+	<li>Crookes, Amadou</li>
+	<li>Gerritz, Kelly</li>
+	</ul>
+
+	<p>Team 8</p>
+	<ul>
+	<li>Kohlenberg, Eli</li>
+	<li>Lyle, David</li>
+	<li>Nunez, Diogenes</li>
+	<li>Lubeck, Tyler</li>
+	</ul>
+
+	<p>Team 9</p>
+	<ul>
+	<li>Piraino, Christopher</li>
+	<li>Danielewicz, Krzysztof</li>
+	<li>de Vera, Albert</li>
+	<li>Canuel, Joe</li>
+	</ul>
+
+	<p>Team 10</p>
+	<ul>
+	<li>Schmitz, Jacob</li>
+	<li>Tenczar, Nate</li>
+	<li>Aquila, George</li>
+	<li>Jenkins, AJ</li>
+	</ul>
+
+	<p>Team 11</p>
+	<ul>
+	<li>Teleky, Nicholas</li>
+	<li>Davis, Nicholas</li>
+	<li>Siu, Gabriel</li>
+	<li>Wu, Kezhi</li>
+	</ul>
+
+	<p>Team 12</p>
+	<ul>
+	<li>Daniel, Samuel</li>
+	<li>James, Michael</li>
+	<li>Segawa, Kamden</li>
+	<li>Weiss, Hayley</li>
+	</ul>
+
+	<p>Team 13</p>
+	<ul>
+	<li>Brenman, Matthew</li>
+	<li>Wishnick, Aaron</li>
+	<li>Dushay, Sam</li>
+	<li>Cung, Vivian</li>
+	</ul>
+
+	<p>Team 14</p>
+	<ul>
+	<li>Silverblatt, Michael</li>
+	<li>Nixon, Paul</li>
+	<li>Mancinelli, Dave</li>
+	<li>Tarrh, Nathan</li>
+	</ul>
+
+</div>
+</div>
+
+<script type="text/javascript">
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+  try {
+    var pageTracker = _gat._getTracker("UA-582953-12");
+    pageTracker._trackPageview();
+  }
+  catch(err) {}
+</script>
+
+</body>
+</html>
