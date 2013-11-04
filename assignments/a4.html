@@ -14,8 +14,8 @@
 <div id = "header">
 <h1>Introduction to Computer Security</h1>
 <h2>COMP 116, Tufts University Department of Computer Science, Fall 2013</h2>
-<h2>Assignment 4: Risk Analysis</h2>
-<h2>Starting In-Class on Thursday, October 24rd; Write-Up Due Halloween</h2>
+<h2>Assignment 4: Technical Risk Analysis</h2>
+<h2>Due in-class on Thursday, November 14th</h2>
 </div>
 
 <div id="content">
@@ -23,14 +23,73 @@
 
 	<h2>Objectives</h2>
 	<ol>
-		<li>Perform a risk analysis on a vulnerable system.</li>
+		<li>Perform a technical risk analysis of a vulnerable system.</li>
 	</ol>
 
-	<p>0a. Please read the presentation <a href="static-binary-analysis-wysopal-tufts-comp-116.pdf" class="title">Binary Static Analysis</a>.  This was Chris Wysopal's talk to the class the last time I taught the class in spring 2012.</p>
+	<h2>Instructions</h2>
 
-	<p>0b.</p>
+	<p>0. Please read the presentation <a href="static-binary-analysis-wysopal-tufts-comp-116.pdf" class="title">Binary Static Analysis</a>.  This was Chris Wysopal's talk the last time I taught the class in spring 2012.</p>
 
-	<p>1.</p>
+	<p>1. You should have received an email to use Veracode's Platform (a.k.a., Analysis Center) to create static and dynamic scans of applications, and to review scan reports.  Create and run a static scan of either (1) the CTF game files under <code>www</code> or (2) an application of your choice, such as your own iOS or Android app.  Please consult with <span class="stress">Help &gt; Compile your application for a static scan</span> for instructions on how to package your application for submission for static analysis scan.</p>
+
+	<p>2. While the goal of our CTF game was to find a number of flags via vulnerabilities in a system, you also performed a number of activities, not limited to:</p>
+	<ul>
+		<li>Penetration testing</li>
+		<li>"Ethical hacking"</li>
+		<li>Conducting research</li>
+		<li>Gathering artifacts</li>
+		<li>Interviewing people</li>
+	</ul>
+
+	<p>Just imagine that you are a managing consultant for a major security company or the Chief Security Officer (CSO) for the company that owned the system, and assume that the business context of the system is mission critical, perform a technical risk analysis of the entire CTF system.  That is, you are to apply a general risk management framework (largely taken from Cigital’s Risk Management Framework).  This framework can be used by managers and software engineers to identify, track, rank, monitor, and understand risks for a project or system.  The output of this activity shall be a table with seven columns:</p>
+
+	<table>
+		<tr>
+			<th>Column Name</th>
+			<th>Information</th>
+			<th>Example</th>
+		</tr>
+		<tr>
+			<td>Risk ID</td>
+			<td>Sequential identifier for risk</td>
+			<td>1</td>
+		</tr>
+		<tr>
+			<td>Technical Risk</td>
+			<td>&nbsp;</td>
+			<td>User authentication to system can be brute-forced.</td>
+		</tr>
+		<tr>
+			<td>Techical Risk Indicators</td>
+			<td>Evidence of the risk occurring.</td>
+			<td>Number of incorrect logins for accounts seen in logs; performance of login server has been degrading.</td>
+		</tr>
+		<tr>
+			<td>Impact Rating</td>
+			<td>Use NIST standard: (H)igh, (M)edium, (L)ow</td>
+			<td>H</td>
+		</tr>
+		<tr>
+			<td>Impact</td>
+			<td>Possible results of the risk, impacting the goals of the product.</td>
+			<td>Increased load on login server; slower performance; possible denial of service</td>
+		</tr>
+		<tr>
+			<td>Mitigation</td>
+			<td>Action taken to reduce the probability of the risk actually occurring (or how to actually fix the bug).  There may be more than one way to mitigate a risk.</td>
+			<td>Lock out user account on 5 incorrect password tries by setting account lockout flag to true.</td>
+		</tr>
+		<tr>
+			<td>Validation Steps</td>
+			<td>How do you ensure that risk was mitigated?</td>
+			<td>Account lockout flag set for user account on 5 incorrect password tries.</td>
+		</tr>
+	</table>
+
+	<p>In practice and in industry, the technical risk analysis table is used to correlate with business risks.   Your job is to produce a technical risk table for the entire CTF system.  Each of the vulnerabilities that you found in the CTF game shall be a technical risk.  I can count at least five (5) additional critical vulnerabilities in the system that were not part of the game directly.</p>
+
+	<h2>Submission</h2>
+	<p>Please hand in your technical risk table, printed, in class on Thursday, November 14th.  As for your Veracode static scan, I will be able to view your application and scan results electronically.</p>
 </div>
 </div>
 

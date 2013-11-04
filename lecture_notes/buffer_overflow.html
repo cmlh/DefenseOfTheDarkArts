@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html>
+<title>COMP 116: Introduction to Computer Security - Buffer Overflow</title>
+
+<?php
+	require_once("../header.php");
+?>
+
+<div id="nav">
+<h4>Navigation</h4>
+<ul>
+<li><a href="../index.php">Course Information</a></li>
+<li><a href="../news.php">News</a></li>
+<li><a href="index.php" id="current">Syllabus and Lectures</a></li>
+<li><a href="../assignments/">Assignments</a></li>
+<li><a href="../resources.php">Resources</a></li>
+</ul>
+</div>
+
+<div id="content">
+<h2>Buffer Overflow</h2>
+
+<h3>Reading</h3>
+<ul>
+<li><a href="http://www.phrack.org/issues.html?id=14&amp;issue=49" target="_blank"><span class="title">Smashing The Stack For Fun And Profit</span> by Aleph One (in Phrack Magazine, Issue #49, 8/11/1996)</a></li>
+</ul>
+
+<h3>Pitfalls in C (and C++ for that matter)</h3>
+<ul>
+<li>C is inherently unsafe</li>
+<li>Hardly any bounds checks on array and pointer references</li>
+</ul>
+
+<h3>Review: Command Line Arguments</h3>
+<ul>
+<li>Two arguments of <code>main()</code>
+<ul>
+<li>An integer: contains the number of arguments</li>
+<li>A pointer to an array of strings: contains the arguments where the zeroth argument is the name of the executing binary</li>
+</ul>
+</li>
+<li>Example, <code>arguments.c</code>:
+<pre>
+#include &lt;stdio.h&gt;
+
+int main (int argc, const char * argv[])
+{
+	int i = 0;	
+
+	printf("The value of i is %d\n", i);
+	printf("The value of the argument count, argc, is %d\n", argc);
+	for (i = 0; i &lt; argc; i++) {
+		printf("Argument %d =&gt; %s\n", i, argv[i]);
+	}
+}
+</pre>
+</li>
+<li>To compile and run the example (e.g., on terminal):
+<ul>
+<li><code>gcc -o arguments arguments.c</code></li>
+<li><code>./arguments hi ho</code></li>
+</ul>
+</li>
+</ul>
+
+<h3>Review: String</h3>
+<ul>
+<li>In C, a string is an array (or buffer) of characters (<code>char</code>); <span class="stress">must be null terminated with <code>'\0'</code> a.k.a, null byte</span></li>
+<li>Example: <code>char label[10] = "Single";</code> would "look" like <code>| S | i | n | g | l | e | \0 |&nbsp;|&nbsp;|&nbsp;|</code> (with 3 unused array elements)</li>
+<li><code>char *str;</code> - a character array without a set length; initially, no space allocated; could point to the address of the beginning of a string</li>
+</ul>
+
+<h3>Review: Data Type Sizes</h3>
+<ul>
+<li><code>sizeof()</code></li>
+<li><code>int</code> =&gt; 4 bytes</li>
+<li><code>unsigned int</code> =&gt; 4 bytes</li>
+<li><code>short int</code> =&gt; 2 bytes</li>
+<li><code>long int</code> =&gt; 8 bytes</li>
+<li><code>long long int</code> =&gt; 8 bytes</li>
+<li><code>float</code> =&gt; 4 bytes</li>
+<li><code>char</code> =&gt; 1 byte</li>
+</ul>
+
+<h3>Review: Pointers</h3>
+<ul>
+<li>The idea: don't want to copy a large block of memory which is expensive but instead, use the address of the beginning of a block of memory</li>
+<li>Urary operator <code>&amp;</code>: returns the address of a declared variable</li>
+<li>Dereferencing operator <code>*</code>: refers to the value of what the pointer is pointing to</li>
+<li>Simple example <code>pointers1.c</code>:
+<pre>
+#include &lt;stdio.h&gt;
+
+int main()
+{
+	int i;
+	int *j;
+	
+	i = 30;
+	j = &amp;i; // Copy address of i to pointer j
+	*j = 23; // Dereference pointer j and set the containing value to 23 =&gt; changing the value of i
+	printf("The value of i is %d\n", i);
+	return 0;
+}
+
+</pre>
+</li>
+<li>More <code>pointers2.c</code>
+<pre>
+#include &lt;stdio.h&gt;
+
+int main()
+{
+	int num = 13;
+	int *num_ptr;
+	num_ptr = &amp;num;
+	
+	printf("num = %d\n", num);
+	printf("num_ptr = 0x%08x\n", num_ptr);
+	printf("&amp;num_ptr = 0x%08x\n", &amp;num_ptr);
+	printf("*num_ptr = 0x%08x\n", *num_ptr);
+	printf("num is located at 0x%08x and contains %d\n", &amp;num, num);
+	printf("num_ptr is located at 0x%08x, contains 0x%08x, and points to %d\n", &amp;num_ptr, num_ptr, *num_ptr);
+}
+</pre>
+</li>
+</ul>
+
+<h3>Review: Format Strings</h3>
+<ul>
+<li>Used in <code>printf()</code>, <code>scanf()</code>, <code>sscanf()</code></li>
+<li>Special character string with special escape sequences (beginning with <code>%</code>) to insert variables of specific formats</li>
+<li>Example: see <code>arguments.c</code>
+<ul>
+<li><code>Argument %d =&gt; %s\n</code> is the format string</li>
+<li><code>%d</code> and <code>%s</code> are format parameters</li>
+</ul>
+</li>
+<li>Format parameters:
+<ul>
+<li><code>%d</code> - Decimal</li>
+<li><code>%u</code> - Unsigned decimal</li>
+<li><code>%x</code> - Hexidecimal</li>
+<li><code>%s</code> - String</li>
+<li><code>%n</code> - Number of bytes written so far</li>
+</ul>
+</li>
+</ul>
+
+<h3>Buffer Overflow Overview</h3>
+<ul>
+<li>Deliberately enter more data than a program was written to handle. In other words, spill-over</li>
+<li>McGraw, Viega: <span class="stress">"If you try to put more data into a buffer than fit, the extra data have to go somewhere, and you may not always like where it goes (i.e., the next contiguous chunk of memory is overwritten)."</span></li>
+<li>Corrupt memory to execute arbitrary code</li>
+<li>Not new</li>
+<li>Cause of most serious security problems for decades (see Morris Worm)</li>
+<li>Still account for many major security bugs</li>
+</ul>
+
+<h3>Review: Memory Segmentation</h3>
+<ul>
+<li>Five segments to a compiled program's memory
+<ol>
+<li><span class="def">Text (or code) segment</span> - Contains assembled machine language instructions of the program</li>
+<li><span class="def">Data</span> - Contains initialized global and static variables; writable; fixed-size</li>
+<li><span class="def">BSS</span> - Contains uninitialized variables; writable; fixed-size</li>
+<li><span class="def">Heap</span> - Segment of memory that you, the programmer, can control; not fixed size (can grow larger or smaller)</li>
+<li><span class="def">Stack</span> - "Temporary scratch pad" for local function variables; not fixed size</li>
+</ol>
+</li>
+</ul>
+
+<h3>Causes of Buffer Overflow</h3>
+<ul>
+<li>Bad language design</li>
+<li>Poor programming; developers are not educated; developers have to check bounds</li>
+</ul>
+
+<h3>Effects of Buffer Overflow</h3>
+<ul>
+<li>Programs act in strange ways</li>
+<li>Programs fail completely</li>
+<li>Programs can proceed as it was normal</li>
+<li>Depends:
+<ul>
+<li>How much data was written past the buffer bounds</li>
+<li>What data (if any) was overwritten when the buffer became full and spills over</li>
+<li>Whether the program attempts to read data that was overwritten</li>
+<li>What data ended up replacing the memory that was overwritten</li>
+</ul>
+</li>
+</ul>
+
+<h3>Defending Against Buffer Overflow</h3>
+<ul>
+<li>Check bounds (duh!)</li>
+<li>Education (see below)</li>
+<li>StackGuard: provides runtime bounds checking; places a "canary" word next to the return address when a function is called; halts when canary word is altered; concept now built into gcc
+<ul>
+<li>Read: <a href="http://www.usenix.org/publications/library/proceedings/sec98/full_papers/cowan/cowan_html/cowan.html" target="_blank">http://www.usenix.org/publications/library/proceedings/sec98/full_papers/cowan/cowan_html/cowan.html</a></li>
+</ul>
+</li>
+<li>Code reviews</li>
+<li>Automated code scanning
+<ul>
+<li><a href="https://www.fortify.com/products/fortify360/source-code-analyzer.html" target="_blank">Fortify 360 Source Code Analyzer (SCA)</a></li>
+<li><a href="http://www.veracode.com/" target="_blank">Veracode</a></li>
+</ul>
+</li>
+</ul>
+
+<h3>The Dirtiest of the Dirty C Function</h3>
+<ul>
+<li><code>gets</code></li>
+<li><code>strcpy</code></li>
+<li><code>strcat</code></li>
+<li><code>sprintf</code></li>
+<li><code>scanf</code></li>
+<li><code>fscanf</code></li>
+<li><code>vfscanf</code></li>
+<li><code>vsprintf</code></li>
+<li><code>vscanf</code></li>
+<li><code>vsscanf</code></li>
+<li><code>streadd</code></li>
+<li><code>strecpy</code></li>
+</ul>
+
+<h3>Question: Is Using Java Better?</h3>
+<!-- See http://stackoverflow.com/questions/479701/does-java-have-buffer-overflows -->
+
+<h3>Attack Buffer</h3>
+<ul>
+<li>A buffer greater than the allocated buffer will replace other information on the stack</li>
+<li>Want to "hardwire" the return address</li>
+<li>Problem: determine absolute address in buffer to jump to and ensuring you replace the return address</li>
+<li>Solution: <code>NOP</code> slide</li>
+</ul>
+
+<h3>Shellcode</h3>
+<ul>
+<li>The payload; code to spawn a shell</li>
+<li>Example: <code>exec /bin/sh</code></li>
+<li>Get hexidecimal of binary code (to spawn a shell)</li>
+<li>The code will be executed with the privileges of the running program (usually r00t)</li>
+<li>Typically injected into a target process via null-terminated string.  Important: Any null byte in the shell code would stop the copying procedure.  This null bytes must be eliminated!</li>
+<li>Reference: <a href="http://www.shell-storm.org/shellcode/" target="_blank">http://www.shell-storm.org/shellcode/</a></li>
+</ul>
+
+<h3>Caveat</h3>
+<ul>
+<li>Modern compilers can now inject additional code into the executables that at <span class="stress">runtime</span> checks for buffer overflow conditions and suppresses them</li>
+<li>Example: <code>gcc</code> versions > 3.1 (see Ubuntu) includes Stack-Smashing Protection (SSP)
+<ul>
+<li>To disable: use option <code>-fno-stack-protector</code></li>
+</ul>
+</ul>
+
+<h3>Format String Attacks</h3>
+<ul>
+<li>Risks (allow attacker to):
+<ul>
+<li>Execute code</li>
+<li>Read the stack</li>
+<li>Alter behavior of running program</li>
+<li>Segmentation Fault</li>
+<li>Buffer overflow</li>
+<li>Denial of Service (DoS)</li>
+</ul>
+</li>
+<li>Reference: <a href="http://www.owasp.org/index.php/Format_string_attack" target="_blank">http://www.owasp.org/index.php/Format_string_attack</a></li>
+</ul>
+
+<h3>References</h3>
+<ul>
+<li><a href="http://www.owasp.org/index.php/Buffer_Overflow" target="_blank">OWASP</a></li>
+<li><a href="http://www.linuxjournal.com/article/6701" target="_blank">http://www.linuxjournal.com/article/6701</a></li>
+</ul>
+
+</div>
+
+<?php
+	require_once("../footer.php");
+?>
