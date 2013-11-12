@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<link rel="stylesheet" href="../stylesheets/default.css" type="text/css" media="screen"/>
+<link rel="shortcut icon" href="../images/favicon.ico" />
+<title>COMP 116: Introduction to Computer Security</title>
+</head>
+
+<body>
+<div id="main">
+<div id = "header">
+<h2>Forensics and Anti-Forensics</h2>
+</div>
+
+<h3>Why Forensics?</h3>
+<ul>
+<li>E-mail</li>
+<li>Child pornography</li>
+<li>Sexting</li>
+<li>Fraud (especially financial)</li>
+<li>Intellectual property theft</li>
+</ul>
+
+<h3>What is Computer Forensics?</h3>
+<ul>
+<li>Preservation (of computer media)</li>
+<li>Identification (of computer media)</li>
+<li>Extraction (of computer media)</li>
+<li>Interpretation</li>
+<li>Documentation</li>
+</ul>
+
+<h3>Process</h3>
+<ol>
+<li>Assess the situation</li>
+<li>Acquire data</li>
+<li>Analyze data</li>
+<li>Report</li>
+</ol>
+
+<h3>Step 1: Assess the Situation</h3>
+<ul>
+<li>Obtain proper authorization</li>
+<li>Notify decision makers (e.g., Human Resources)</li>
+<li>Identify investigation team members</li>
+<li>Conduct thorough assessment</li>
+<li>Review policies and laws (local, state, and federal)</li>
+<li>Decide whether to involve law enforcement. For some incidents (e.g., child pornography, death threats), law enforcement involvement is required.</li>
+<li>Conduct interviews</li>
+<li>Prepare for evidence acquisition</li>
+</ul>
+
+<h3>Step 2: Acquire Data</h3>
+<ul>
+<li>Build toolkit, jump-bag of tools</li>
+<li>Determine whether a rootkit has been installed on systems</li>
+<li>Start log of actions</li>
+<li>Identify and document potential sources of data</li>
+<li>Collect volatile and non-volatile data.  Volatile evidence (e.g., memory, running processes) can be easily destroyed/</li>
+<li>Store evidence in a secure and tamperproof location</li>
+</ul>
+
+<h3>Step 3: Analyze Data</h3>
+<ul>
+<li>Examine network data (e.g., logs, firewall, IDS, packets)</li>
+<li>Whenever possible, perform offline analysis on bit-wise copy of the original evidence</li>
+<li>Determine if encryption was used</li>
+<li>Uncompress any compressed files or archives</li>
+<li>Create diagram of directory structure</li>
+<li>Examine Windows registry (if applicable)</li>
+<li>Search contents of all gathered files</li>
+<li>Study the metadata of files</li>
+</ul>
+
+<h3>Step 4: Report</h3>
+<ul>
+<li>Gather all documentation and notes from steps 1-3</li>
+<li>Create outline of documentation that are relevant to investigation</li>
+<li>Identify the facts</li>
+<li>Create a list of all evidence to be enclosed with report</li>
+<li>List conclusions</li>
+<li>Typical format of report:
+<ul>
+<li>Purpose</li>
+<li>Authors</li>
+<li>Incident Summary</li>
+<li>Evidence</li>
+<li>Details</li>
+<li>Conclusions</li>
+<li>Enclosures and supporting documents</li>
+</ul>
+</li>
+</ul>
+
+<h3>Working with Volatile Data</h3>
+<ul>
+<li>Processes</li>
+<li>Memory (see <code>/dev/mem</code>)</li>
+<li><a href="http://www.hbgary.com/responder-field" target="_blank">HBGary Responder</a></li>
+</ul>
+
+<h3>Tools</h3>
+<ul>
+<li><code>strings</code></li>
+<li><code><a href="http://en.wikipedia.org/wiki/Dd_(Unix)" target="_blank">dd</a></code> (convert-and-copy)</li>
+<li><a href="http://accessdata.com/products/forensic-investigation/ftk" target="_blank">FTK</a></li>
+<li><a href="http://www.guidancesoftware.com/" target="_blank">Encase</a></li>
+<li><a href="http://www.microsoft.com/industry/government/solutions/cofee/default.aspx" target="_blank">Microsoft COFEE</a> <span class="note">(for law enforcement only)</span></li>
+<li><a href="http://www.outguess.org/detection.php" target="_blank">stegdetect</a></li>
+<li><a href="http://www.sleuthkit.org/" target="_blank">Sleuthkit and Autopsy</a></li>
+</ul>
+
+<h3>Anti-Forensics</h3>
+<ul>
+<li><a href="http://www.wired.com/threatlevel/2009/12/decaf-cofee/" target="_blank">DECAF</a> <span class="note">(no longer available)</span></li>
+<li>Steganography
+<ul>
+<li><a href="http://steghide.sourceforge.net/" target="_blank">steghide</a></li>
+<li><a href="http://www.crazyboy.com/hydan/" target="_blank">Hydan</a></li>
+<li><a href="http://www.guillermito2.net/stegano/jsteg/index.html" target="_blank">jsteg</a></li>
+</ul>
+</li>
+<li>Remove or wipe out logs</li>
+<li>Encryption (e.g., <a href="http://www.truecrypt.org/" target="_blank">TrueCrypt</a>)</li>
+</ul>
+
+</div>
+
+<script type="text/javascript">
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+  try {
+    var pageTracker = _gat._getTracker("UA-582953-12");
+    pageTracker._trackPageview();
+  }
+  catch(err) {}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<link rel="stylesheet" href="../stylesheets/default.css" type="text/css" media="screen"/>
+<link rel="shortcut icon" href="../images/favicon.ico" />
+<title>COMP 116: Introduction to Computer Security</title>
+</head>
+
+<body>
+<div id="main">
+<div id = "header">
+<h2>Incident Handling</h2>
+</div>
+
+<h3>Recall</h3>
+<ul>
+<li>The difference between an event and an incident</li>
+<li><span class="def">Incident Handling (IH)</span> - response by a person or organization to an attack or incident; a process (per SANS Institute)</li>
+</ul>
+
+<h3>Why Incident Handling? Without It...</h3>
+<ul>
+<li>Chaos</li>
+<li>Barking up the wrong trees</li>
+<li>Dead-end investigations</li>
+<li>Hard to accumulate knowledge, experience</li>
+<li>Legal issues</li>
+<li>Cost overruns</li>
+<li>Organization (i.e., do not know who to contact)</li>
+</ul>
+
+<h3>Part 1: Preparation</h3>
+<ul>
+<li>The security policy</li>
+<li>Learn about your environment, system architectures</li>
+<li>Train and educate employees</li>
+<li>Identify tools, create a jump bag ready-to-go (e.g., BackTrack DVD, extra ethernet cables, static-free bags, a notebook)</li>
+<li>Identify contacts and owners</li>
+</ul>
+
+<h3>Part 2: Identification</h3>
+<ul>
+<li>The first report of incident</li>
+<li>Start recordkeeping</li>
+<li>Collect information, logs</li>
+</ul>
+
+<h3>Log Analysis (Unixland)</h3>
+<ul>
+<li>Format: <code>date/time host message_source message</code></li>
+<li><code>syslog</code></li>
+<li>Default location of logs in filesystem: <code>/var/log</code></li>
+<li>Configuration (e.g., log to a server): <code>/etc/syslog.conf</code></li>
+<li>Problems:
+<ul>
+<li>Inconsistent format among platforms (other than date/time)</li>
+<li>Can be deleted, modified by attacker</li>
+<li>Can be HUGE!</li>
+</ul>
+</li>
+<li>In Windows: use eventviewer</li>
+<li>Remember: <span class="stress">If an event is not logged, then you cannot analyze it!</span></li>
+</ul>
+
+<h3>Part 3: Containment</h3>
+<ul>
+<li>Limit damage</li>
+<li>Keep evidence in tact</li>
+<li>Backup</li>
+<li>Determine whether to continue operations</li>
+</ul>
+
+<h3>Part 4: Eradication</h3>
+<ul>
+<li>Eliminate incident</li>
+<li>Change passwords</li>
+<li>Perhaps migrate system to new architecture</li>
+<li>Restore from last good backup or reinstall clean operating system</li>
+<li>Secure wipe hard drives (see <a href="http://www.dss.mil/documents/odaa/nispom2006-5220.pdf" target="_blank">US Department of Defense 5220.22-M</a>)</li>
+</ul>
+
+<h3>Part 5: Recovery</h3>
+<ul>
+<li>Return to normal</li>
+<li>Increase monitoring (e.g., Tripwire)</li>
+<li>Test new controls</li>
+</ul>
+
+<h3>Part 6: Lessons Learned</h3>
+<ul>
+<li>Follow-up</li>
+<li>Summary to management</li>
+<li>Write newsletter to employees, public</li>
+</ul>
+
+</div>
+
+<script type="text/javascript">
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+  try {
+    var pageTracker = _gat._getTracker("UA-582953-12");
+    pageTracker._trackPageview();
+  }
+  catch(err) {}
+</script>
+
+</body>
+</html>
